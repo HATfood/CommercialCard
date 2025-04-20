@@ -36,32 +36,35 @@
         overflow-y: auto;
     }
 
-    /* Add this to your existing CSS */
-    body {
-        position: relative;
-        overflow: hidden; /* Prevents scrollbars from appearing due to the decorative elements */
-    }
-    
-    .decorative-element {
-        position: absolute;
-        width: 200px; /* Adjust size as needed */
-        height: 400px; /* Adjust size as needed */
-        z-index: -1; /* Places it behind the content */
-        pointer-events: none; /* Makes it non-interactive */
-    }
-    
-    .top-right {
-        top: -50px;
-        right: -50px;
-        transform: rotate(0deg);
-    }
-    
-    .bottom-left {
-        bottom: -50px;
-        left: -50px;
-        transform: rotate(180deg);
-    }
+/* Updated CSS */
+body {
+    position: relative;
+    /* Remove overflow: hidden to allow scrolling */
+}
 
+.decorative-element {
+    position: absolute;
+    width: 200px; /* Adjust size as needed */
+    height: 400px; /* Adjust size as needed */
+    z-index: -1; /* Places it behind the content */
+    pointer-events: none; /* Makes it non-interactive */
+}
+
+.top-right {
+    top: -50px;
+    right: -50px;
+    transform: rotate(0deg);
+}
+
+.bottom-left {
+    /* Adjust position to prevent blocking scrolling */
+    bottom: 0;
+    left: -50px;
+    transform: rotate(180deg);
+    /* Use fixed position to keep it in view without blocking scrolling */
+    position: fixed;
+}
+/* end CSS */
     .card-container {
         width: 100%;
         max-width: 500px;
@@ -269,18 +272,22 @@
 <body>
     <!-- Container remains the same -->
     <div class="decorative-element top-right">
-    <svg viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 0 L150 0 L50 500 L0 500 Z" fill="#FF9933" />
-        <path d="M50 0 L200 0 L100 500 L50 500 Z" fill="#BBBBBB" opacity="0.7" />
-    </svg>
-</div>
-
-<div class="decorative-element bottom-left">
-    <svg viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 0 L150 0 L50 500 L0 500 Z" fill="#FF9933" />
-        <path d="M50 0 L200 0 L100 500 L50 500 Z" fill="#BBBBBB" opacity="0.7" />
-    </svg>
-</div>
+        <svg viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+            <!-- Gray layer on bottom -->
+            <path d="M50 0 C70 0, 180 0, 200 0 C180 150, 120 350, 100 500 C90 500, 60 500, 50 500 C60 350, 70 150, 50 0 Z" fill="#BBBBBB" />
+            <!-- Orange layer on top with no transparency -->
+            <path d="M0 0 C20 0, 130 0, 150 0 C130 150, 70 350, 50 500 C40 500, 10 500, 0 500 C10 350, 20 150, 0 0 Z" fill="#FF9933" />
+        </svg>
+    </div>
+    
+    <div class="decorative-element bottom-left">
+        <svg viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+            <!-- Gray layer on bottom -->
+            <path d="M50 0 C70 0, 180 0, 200 0 C180 150, 120 350, 100 500 C90 500, 60 500, 50 500 C60 350, 70 150, 50 0 Z" fill="#BBBBBB" />
+            <!-- Orange layer on top with no transparency -->
+            <path d="M0 0 C20 0, 130 0, 150 0 C130 150, 70 350, 50 500 C40 500, 10 500, 0 500 C10 350, 20 150, 0 0 Z" fill="#FF9933" />
+        </svg>
+    </div>
     
     <div class="card-container">
         <!-- Profile Images -->
