@@ -35,7 +35,55 @@
         padding: 20px;
         overflow-y: auto;
     }
+/* --- ADD THESE STYLES --- */
 
+    body {
+        /* ... (keep existing body styles: min-height, display, etc.) ... */
+        position: relative; /* Needed for absolute positioning of pseudo-elements if you choose that over fixed */
+        overflow-x: hidden; /* Prevent horizontal scrollbars if graphics slightly overflow */
+    }
+    
+    /* Common styles for both border graphics */
+    body::before,
+    body::after {
+        content: ''; /* Required for pseudo-elements to show */
+        position: fixed; /* Position relative to the viewport */
+        top: 50%; /* Start vertical positioning from the center */
+        transform: translateY(-50%); /* Center vertically */
+        width: 7vw; /* Width relative to viewport width (adjust as needed) */
+        max-width: 60px; /* Maximum pixel width (adjust as needed) */
+        height: 60vh; /* Height relative to viewport height (adjust as needed) */
+        background-image: url('border-graphic.png'); /* Your graphic file */
+        background-size: contain; /* Fit the image within the dimensions */
+        background-repeat: no-repeat;
+        z-index: -1; /* IMPORTANT: Place graphics BEHIND the card content */
+        opacity: 0.85; /* Optional: Make them slightly transparent */
+    }
+    
+    /* Style for the LEFT border graphic */
+    body::before {
+        left: 2vw; /* Position from the left edge (adjust as needed) */
+        background-position: center left;
+        transform: translateY(-50%) rotate(-5deg); /* Center vertically and apply slight rotation */
+    }
+    
+    /* Style for the RIGHT border graphic */
+    body::after {
+        right: 2vw; /* Position from the right edge (adjust as needed) */
+        background-position: center right;
+        /* Flip horizontally (scaleX(-1)) and apply slight rotation */
+        transform: translateY(-50%) scaleX(-1) rotate(-5deg);
+    }
+    
+    /* Optional: Hide graphics on smaller screens if they feel cluttered */
+    @media (max-width: 768px) { /* Adjust breakpoint as needed */
+        body::before,
+        body::after {
+            display: none;
+        }
+    }
+    
+    /* --- END OF ADDED STYLES --- */
     .card-container {
         width: 100%;
         max-width: 500px;
