@@ -35,64 +35,7 @@
         padding: 20px;
         overflow-y: auto;
     }
-/* --- REPLACE PREVIOUS BORDER STYLES WITH THESE --- */
 
-body {
-    /* ... (keep existing body styles: min-height, display, etc.) ... */
-    position: relative; /* Still potentially useful */
-    /* Prevent scrollbars caused by large corner graphics */
-    overflow: hidden;
-}
-
-/* Common styles for both border graphics */
-body::before,
-body::after {
-    content: '';
-    position: fixed; /* Keep fixed to viewport corners */
-    /* Make them much larger - Adjust % as needed */
-    width: 35vw;  /* Example: 35% of viewport width */
-    height: 55vh; /* Example: 55% of viewport height */
-    background-image: url('border-graphic.png'); /* Your graphic file */
-    background-size: contain; /* Fit the image within the dimensions */
-    background-repeat: no-repeat;
-    z-index: -1; /* Keep behind content */
-    opacity: 0.8; /* Optional: Adjust transparency */
-    /* Prevent user interaction with background elements */
-    pointer-events: none;
-}
-
-/* Style for the BOTTOM-LEFT border graphic */
-body::before {
-    bottom: 0; /* Anchor to bottom */
-    left: 0; /* Anchor to left */
-    background-position: bottom left; /* Align image within its box */
-    /* Set origin for rotation to bottom-left corner */
-    transform-origin: bottom left;
-    /* Rotate slightly - adjust angle as desired */
-    transform: rotate(-15deg);
-}
-
-/* Style for the TOP-RIGHT border graphic */
-body::after {
-    top: 0; /* Anchor to top */
-    right: 0; /* Anchor to right */
-    background-position: top right; /* Align image within its box */
-    /* Set origin for rotation/scaling to top-right corner */
-    transform-origin: top right;
-    /* Flip horizontally (scaleX(-1)) and rotate slightly */
-    /* The rotation angle might need tweaking to look good when flipped */
-    transform: scaleX(-1) rotate(-15deg);
-}
-
-/* Optional: Hide graphics on smaller screens */
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
-    body::before,
-    body::after {
-        display: none;
-    }
-}
-
-/* --- END OF REPLACED BORDER STYLES --- */
     .card-container {
         width: 100%;
         max-width: 500px;
