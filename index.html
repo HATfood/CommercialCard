@@ -36,6 +36,32 @@
         overflow-y: auto;
     }
 
+    /* Add this to your existing CSS */
+    body {
+        position: relative;
+        overflow: hidden; /* Prevents scrollbars from appearing due to the decorative elements */
+    }
+    
+    .decorative-element {
+        position: absolute;
+        width: 200px; /* Adjust size as needed */
+        height: 400px; /* Adjust size as needed */
+        z-index: -1; /* Places it behind the content */
+        pointer-events: none; /* Makes it non-interactive */
+    }
+    
+    .top-right {
+        top: -50px;
+        right: -50px;
+        transform: rotate(0deg);
+    }
+    
+    .bottom-left {
+        bottom: -50px;
+        left: -50px;
+        transform: rotate(180deg);
+    }
+
     .card-container {
         width: 100%;
         max-width: 500px;
@@ -242,6 +268,20 @@
 </head>
 <body>
     <!-- Container remains the same -->
+    <div class="decorative-element top-right">
+    <svg viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L150 0 L50 500 L0 500 Z" fill="#FF9933" />
+        <path d="M50 0 L200 0 L100 500 L50 500 Z" fill="#BBBBBB" opacity="0.7" />
+    </svg>
+</div>
+
+<div class="decorative-element bottom-left">
+    <svg viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L150 0 L50 500 L0 500 Z" fill="#FF9933" />
+        <path d="M50 0 L200 0 L100 500 L50 500 Z" fill="#BBBBBB" opacity="0.7" />
+    </svg>
+</div>
+    
     <div class="card-container">
         <!-- Profile Images -->
         <div class="profile-images">
